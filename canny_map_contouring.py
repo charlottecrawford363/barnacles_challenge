@@ -2,8 +2,12 @@
 Detecting barnacles with a Canny edge map with morphological
 closing and contours or Hough circle detection
 
-Canny edge detection: https://docs.opencv.org/4.13.0/da/d22/tutorial_py_canny.html
-Hough circles: https://www.geeksforgeeks.org/python/circle-detection-using-opencv-python/
+- I used this source to get a basic understanding of how to use canny edge detection: 
+https://docs.opencv.org/4.13.0/da/d22/tutorial_py_canny.html
+- I referenced some code in here to determine how to use the morphing technique:
+https://www.scaler.com/topics/contour-analysis-opencv/ 
+- The code for Hough circles is based on: https://docs.opencv.org/3.4.20/da/d53/tutorial_py_houghcircles.html
+with changes to the parameters and layout.
 """
 
 import cv2 as cv
@@ -54,16 +58,12 @@ def canny_map_contouring(img_path, method):
         )
 
         if circles is not None:
-            # Convert the coordinates and radii to integers
-            circles = np.uint16(np.around(circles))
-            
+            circles = np.uint16(np.around(circles))      
             for i in circles[0, :]:
                 center = (i[0], i[1])
                 radius = i[2]          
                 
-                # Draw the outer circle outline (in green)
                 cv.circle(img, center, radius, (255, 0, 0), 2)
-                # Draw the center point of the shape (in red)
                 cv.circle(img, center, 2, (0, 0, 255), 3)
 
     f, axarr = plt.subplots(1, 3, constrained_layout=True)

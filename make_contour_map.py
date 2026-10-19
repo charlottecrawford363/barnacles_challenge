@@ -1,7 +1,8 @@
 """
 Create a contour map of an image
 
-Source: https://towardsdatascience.com/image-contouring-with-opencv-5b18f17a8386/
+- This code is from: https://towardsdatascience.com/image-contouring-with-opencv-5b18f17a8386/
+with some minor adjustments of the constant variables.
 """
 
 import numpy as np
@@ -25,18 +26,12 @@ def make_contour_map(img_path):
     # Smooth the image using Gaussian blur
     smoothed_img = cv.GaussianBlur(IMG_GRAY, SMOOTHING_KERNEL, sigmaX=0)
 
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
-    # Set the contour levels
     contour_levels = np.linspace(0, 255, NUM_CONTOURS)
-
-    # Create the contour plot
     contour_plot = ax.contour(smoothed_img, levels=contour_levels, colors='black')
 
-    # Add the smoothed image
-    ax.imshow(smoothed_img, 
-            cmap='gray', 
-            alpha=ALPHA)
+    ax.imshow(smoothed_img, cmap='gray', alpha=ALPHA)
 
     ax.set_title('Smoothed Image with Contours')
     ax.set_axis_off()

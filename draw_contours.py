@@ -1,7 +1,10 @@
 """
 Helper function for drawing the contour shapes
 
-Source for the drawing of contours: https://medium.com/@siromermer/contour-detection-using-opencv-detecting-and-counting-coins-2d5192597e3c 
+- The base code for drawing contours is from: https://medium.com/@siromermer/contour-detection-using-opencv-detecting-and-counting-coins-2d5192597e3c 
+- I added the option to choose the shape of the contour, the avg_radius
+variable, the ellipse shape option, and more defined restraints for 
+size of contours.
 """
 import cv2 as cv
 
@@ -16,7 +19,7 @@ def draw_contours(img, contours, shape):
     Args:
         img (np.ndarray): image to draw contours on
         contours (list): a list of contours from cv.findContours
-        shape (str): "circle", "ellipsse", or "hull"
+        shape (str): "circle", "ellipse", or "hull"
 
     Returns:
         tuple: (contour_count, avg_radius), the number of valid contours drawn

@@ -1,9 +1,9 @@
 """
 Barnacle detection using thresholding and contour finding.
 
-Experimenting w/ different image thresholding: https://docs.opencv.org/3.4.20/d7/d4d/tutorial_py_thresholding.html
-Starting w/ using this to remove background: https://www.geeksforgeeks.org/python/removing-black-background-and-make-transparent-using-python-opencv/
-Using single color channel: https://learnopencv.com/contour-detection-using-opencv-python-c/#steps-for-detecting-contours 
+- I followed this tutorial to experiment with different thresholding types: https://docs.opencv.org/3.4.20/d7/d4d/tutorial_py_thresholding.html
+- The code to remove the background in contour_detection_channel_v1 is from: https://www.geeksforgeeks.org/python/removing-black-background-and-make-transparent-using-python-opencv/
+- The code for single color channel in contour_detection_channel is from: https://learnopencv.com/contour-detection-using-opencv-python-c/#steps-for-detecting-contours 
 """
 
 import cv2 as cv
@@ -67,7 +67,7 @@ def contour_detection_channel_v1(img_path, shape="circle"):
     # create binary image
     _, binary_image= cv.threshold(gray_image, 100, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
 
-    # remove background       
+    # remove background (source in header)     
     b, g, r = cv.split(image)
     rgba = [b, g, r, binary_image]
     dst = cv.merge(rgba, 4)        
